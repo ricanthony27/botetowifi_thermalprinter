@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <meta charset="utf-8">
+  <title>Project Tutorial</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      color: #222;
+    }
+    header {
+      background: #2b7a78;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2b7a78;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    pre {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: #def2f1;
+      margin: 6px 0;
+      padding: 8px;
+      border-radius: 6px;
+    }
+    ul li a {
+      color: #17252a;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    ul li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bottle to Pesos RVM</h1>
+    <p>Step-by-step guide with wiring, code, 3D model, and components list</p>
+  </header>
+
+  <section>
+    <h2>📖 Project description</h2>
+    <p> The Bottle to Wi-Fi Voucher Reverse Vending Machine dispenses Wi-Fi vouchers as a reward in exchange for plastic bottles and cans, promoting recycling and waste reduction.</p> 
+    <p> 
+        <b>System Process:</b> 
+    </p> 
+    <p>The system operates when a plastic bottle is inserted into the slot. Once the laser sensor detects the object, the system verifies whether it is a valid 500 ml plastic bottle or an invalid item such as a can or organic waste using capacitive sensor. All processes are displayed on the LCD screen, including verification status, valid bottle count, voucher dispensing, and RFID access (valid or invalid) for unlocking the panel board as a safety measure. When the threshold is reached, the LCD prompts the client to redeem their reward by pressing a push button, which triggers the thermal printer to dispense a Wi-Fi voucher. Vouchers are managed through an ESP32 SoftAP mode web server, where administrators can monitor system data, upload up to a thousand voucher codes, and delete any incorrect entries.</p>
+  </section>
+  
+   <section>
+    <h2>🛒 Items Needed</h2>
+    <p> ➤ Arduino Mega</p>
+    <p> ➤ ESP32</p>
+    <p> ➤ 12v power supply (for Laser and capacitive sensor)</p>
+    <p> ➤ E3F-20L Laser reciever</p>
+    <p> ➤ E3F-20C1 Laser emitter</p>
+    <p> ➤ MG996R Metal gear servo motor (2)</p>
+    <p> ➤ Capacitive sensor PNP type</p>
+    <p> ➤ RFID reader MFRC-522</p>
+    <p> ➤ 20x4 i2c LCD</p>
+    <P> ➤ Solenoid lock </P>
+    <p> ➤ Thermal Printer</p>
+    <p> ➤ 10k and 6.8k ohms resistor</p>
+    <p> ➤ Jumper wire</p>
+
+    <ul>
+      <li><a href="https://vt.tiktok.com/ZSHWJ98H5HqRR-WTgbF/" target="_blank">Arduino Mega/ESP32/Solenoid Lock/RFID reader/ this shop is almost complete</a></li>
+      <li><a href="https://vt.tiktok.com/ZSHWJxT3QH2k1-9n7VP/" target="_blank">MG996R metal gear servo motor</a></li>
+      <li><a href="https://vt.tiktok.com/ZSHWJxroLn5t9-9MVdL/" target="_blank">Capacitive Sensor</a></li>
+      <li><a href="https://vt.tiktok.com/ZSHn74Aa7jAWG-wdzAn/" target="_blank">Power supply</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📌 Wiring Diagram</h2>
+    <p>Follow this wiring diagram carefully:</p>
+    <img src="wiring.png" alt="Wiring Diagram">
+  </section>
+
+   <section>
+    <h2>⚙️ Follow this 3d model guide</h2>
+    <p>place your sesors and servo motors as shown</p>
+    <img src="sensor.png" alt="sensor">
+    <p>place your servo motors like this</p>
+    <img src="sensor2.png" alt="sensor">
+  </section>
+
+  <section>
+  <h2>🎥 Project Demo Video</h2>
+  <p>This is just my most basic idea of sorting mechanisim, you can use another method.</p>
+  <video controls width="100%" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  <source src="demo.mp4" type="video/mp4">
+</section>
+
+<section>
+  <h2>💻 Upload this code first</h2>
+  <p>The servo will turn 90 degrees idle position. </p>
+  <p>While in idle posotion scew your gate and sorter pad. Pads are those plain pad your servo motor is holding. </p>
+
+  <!-- Code container -->
+  <div style="position: relative;">
+    <pre id="arduinoCode">
+////////////////////////////////////////
+    </pre>
+
+    <!-- Copy button -->
+    <button onclick="copyCode()" 
+      style="position: absolute; top: 10px; right: 10px;
+             padding: 6px 12px; border: none; border-radius: 6px;
+             background: #2b7a78; color: white; cursor: pointer;
+             font-size: 12px; font-weight: bold;">
+      Copy
+    </button>
+  </div>
+</section>
+
+<script>
+
+function copyCode() {
+  const code = document.getElementById("arduinoCode").innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    alert("✅ Code copied to clipboard!");
+  });
+}
+</script>
+
+<section>
+  <h2>💻 ESP32 WROON N16R8 Code</h2>
+  <p>You can download the full ESP32 code here:</p>
+  
+  <a href="https://drive.google.com/file/d/1-7-xT1wx293bdNCghLFfHk9eHRCpJNsX/view?usp=drive_link" 
+     target="_blank" 
+     style="display:inline-block; padding:10px 15px; background:#2b7a78; color:white; border-radius:8px; text-decoration:none; font-weight:bold;">
+    📥 Download ESP32 Code
+  </a>
+</section>
+
+
+
+  <section>
+  <h2>📐 3D Model</h2>
+  <p>You can rotate and zoom in on the 3D design below:</p>
+  <model-viewer src="model1.glb" alt="3D Prototype"
+  auto-rotate camera-controls style="width:100%; height:480px;">
+</model-viewer>
+</section>
+
+
+  <section>
+    <h2>🔴 Possible error</h2>
+  </section>
+
+</body>
+</html>
