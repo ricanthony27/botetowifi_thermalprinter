@@ -133,11 +133,12 @@
   <h2>💻 Upload this code first</h2>
   <p>The servo will turn 90 degrees idle position. </p>
   <p>While in idle posotion screw your gate and sorter pad. Pads are those plain pad your servo motor is holding. </p>
+  <p>In #include "<" I remove this part on all libraries since the libraries disapear as i put complete the libraries. Just put "<" and its all good. </p>
 
   <!-- Code container -->
   <div style="position: relative;">
     <pre id="arduinoCode">
-  #include <Servo.h>
+  #include Servo.h>
   Servo servoGate,servoSorter;  
   void setup() {
   servoGate.attach(5);
@@ -174,14 +175,15 @@ function copyCode() {
 
 <section>
   <h2>💻 Arduino Uno full code</h2>
+   <p>In #include "<" I remove this part on all libraries since the libraries disapear as i put complete the libraries. Just put "<" and its all good. </p>
   
 
   <!-- Code container -->
   <div style="position: relative;">
     <pre id="arduinoCode">
-#include <SPI.h>
-#include <MFRC522.h>
-#include <Keypad.h>
+#include SPI.h>
+#include MFRC522.h>
+#include Keypad.h>
 
 #define RELAY_PIN 7
 
@@ -320,13 +322,14 @@ function copyCode() {
 
 <section>
   <h2>💻 Arduino Mega full code</h2>
+  <p>In #include "<" I remove this part on all libraries since the libraries disapear as i put complete the libraries. Just put "<" and its all good. </p>
 
   <!-- Code container -->
   <div style="position: relative;">
     <pre id="arduinoCode">
-#include <LiquidCrystal_I2C.h>
-#include <SPI.h>
-#include <Servo.h>
+#include LiquidCrystal_I2C.h>
+#include SPI.h>
+#include Servo.h>
 
 LiquidCrystal_I2C lcd(0x27,16,2);
 #define LASER_RX_PIN 7   
@@ -524,3 +527,4 @@ function copyCode() {
 
 </body>
 </html>
+
